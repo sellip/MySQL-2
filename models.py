@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import decorative_base, relationship
 
-eng = create_engine('sqlite:///movies.db')
+eng = create_engine('sqlite://movies.db')
 Base = declarative_base()
 
 class Movie(Base):
@@ -33,4 +33,3 @@ class WatchingList(Base):
 
 if __name__ == "__main__":
     Base.metadata.create_all(eng)
-    

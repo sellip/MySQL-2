@@ -59,13 +59,10 @@ class User(Base):
     movies = relationship("Movie", secondary = user_movies, back_populates = "user")
     series = relationship("Series", secondary = user_series, back_populates = "user")
 
-
-
-
 class WatchingList(Base):
     __tablename__ = 'watching_list'
 
-    id = Column(Integer, primary_key = True, autoincrement= True)
+    id = Column(Integer, primary_key = True, autoincrement = True)
     name = Column(String(20), nullable= False)
     date_when_created = Column(String(20), nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"))

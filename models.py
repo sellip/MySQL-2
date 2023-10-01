@@ -55,7 +55,7 @@ class User(Base):
     name = Column(String(20), nullable = False)
     surname = Column(String(20), default = "")
 
-    watch_list = relationship("WatchingList", back_populates = "user", cascade = "all, delete-orphan")
+    watch_lists = relationship("WatchingList", back_populates = "user", cascade = "all, delete-orphan")
     movies = relationship("Movie", secondary = user_movies, back_populates = "user")
     series = relationship("Series", secondary = user_series, back_populates = "user")
 
@@ -66,10 +66,10 @@ class WatchingList(Base):
     name = Column(String(20), nullable= False)
     date_when_created = Column(String(20), nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"))
-    user = relationship("User", back_populates= "watch_lists")
+    user = relationship("User", back_populates= "watching_list")
 
-    movies = relationship("Movie", secondary = watching_list_movies, back_populates = "watching_lists")
-    series = relationship("Series", secondary = watching_list_series, back_populates = "watching_lists")
+    movies = relationship("Movie", secondary = watching_list_movies, back_populates = "watching_list")
+    series = relationship("Series", secondary = watching_list_series, back_populates = "watching_list")
 
 if __name__ == "__main__":
     Base.metadata.create_all(eng)
